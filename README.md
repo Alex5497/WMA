@@ -1,44 +1,53 @@
-Image Matching and Perspective Transformation
+# Video Matching Application (WMA)
 
-This project is aimed at matching images from a given video stream to a set of reference images and performing perspective transformation based on the matches found.
+This project is a video frame matching application that identifies the best matching images from a folder of reference images using ORB (Oriented FAST and Rotated BRIEF) feature detection. The project uses OpenCV for computer vision tasks such as feature detection, matching, and homography computation.
 
-Features
+## Features
+- **Feature Detection**: Uses ORB to detect keypoints and descriptors from images.
+- **Feature Matching**: Uses the Brute-Force Matcher (BFMatcher) to match descriptors between video frames and reference images.
+- **Homography and Alignment**: If sufficient matches are found, the best-matching image is aligned to the video frame using homography transformation.
+  
+## Requirements
+- Python 3.x
+- OpenCV
+- NumPy
 
-Matches video frames with a set of reference images using ORB (Oriented FAST and Rotated BRIEF) feature detection and matching.
-Computes homography to find the perspective transformation between the matched points.
-Draws the matched features between the reference image and the video frame.
-Allows users to specify a minimum number of matches required for perspective transformation.
-Requirements
-
-Python 3.x
-OpenCV (cv2)
-NumPy
-Installation
-
-Clone this repository:
-bash
-Copy code
-git clone https://github.com/your_username/image-matching.git
-Install the required dependencies:
-Copy code
+Install the dependencies using:
+```bash
 pip install opencv-python numpy
-Usage
+```
 
-Place your video file (mov.MOV) in the dane/ directory.
-Place the reference images in the pliki/ directory.
-Run the Python script:
-Copy code
-python image_matching.py
-Press 'q' to exit the application.
-Configuration
+## Usage
+1. Place reference images in the `pliki/` directory.
+2. Place the video file in the `dane/` directory.
+3. Run the script:
+```bash
+python your_script_name.py
+```
+4. The application will display the video frame with the best matching image aligned and outlined.
 
-Adjust the MIN_MATCH_COUNT variable in the script to set the minimum number of matches required for perspective transformation.
-Modify the code to change feature detection and matching algorithms or adjust matching parameters according to your needs.
-License
+Press `q` to quit the application.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Folder Structure
+- **dane/**: Contains the video file (e.g., `mov.MOV`).
+- **pliki/**: Contains reference images for matching.
 
-Acknowledgments
+## Key Parameters
+- **MIN_MATCH_COUNT**: Minimum number of good matches required to compute homography (default is 10).
+- **ORB Feature Detection**: Configured using OpenCV's ORB feature detector.
+- **BFMatcher**: Used for brute-force descriptor matching with L2 norm and cross-check enabled.
 
-This project is inspired by computer vision and image processing techniques.
-Thanks to the OpenCV and NumPy communities for providing powerful libraries for image processing in Python.
+## Output
+The application shows the video frame with matched keypoints highlighted. When enough matches are found, a bounding box is drawn around the detected object in the frame.
+
+## Limitations
+- The accuracy of matching is dependent on the quality of the reference images and the video.
+- The current implementation uses a simple brute-force matching strategy, which might be slow for larger datasets.
+
+## Future Improvements
+- Implement a more efficient matching algorithm, such as FLANN-based matcher.
+- Add support for real-time camera input.
+- Optimize the pipeline for faster processing.
+
+## License
+This project is licensed under the MIT License.
