@@ -22,7 +22,7 @@ pip install opencv-python numpy
 2. Place the video file in the `dane/` directory.
 3. Run the script:
 ```bash
-python your_script_name.py
+python main5.py
 ```
 4. The application will display the video frame with the best matching image aligned and outlined.
 
